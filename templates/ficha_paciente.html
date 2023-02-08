@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Bienvenido {{usuario_actual['nombre']}}!!! </h2>
+    <h3> Informacion personal </h3>
+    <p> Cedula: {{usuario_actual['cedula']}} </p>
+    <p> Nombre: {{usuario_actual['nombre']}} </p>
+    <p> Apellido: {{usuario_actual['apellido']}} </p>
+    <p> Tipo de sangre: {{usuario_actual['tipo_de_sangre']}} </p>
+    <p> Alergia: {{usuario_actual['alergia']}} </p>
+    <p> Seguro medico: {{usuario_actual['seguro_medico']}} </p>
+    <br>
+    <h3> Contacto de emergencia </h3>
+    <p> Nombre y apellido: {{usuario_actual['contacto_nombre']}} </p>
+    <p> Numero de telefono: {{usuario_actual['contacto_telefono']}} </p>
+    <p> Parentesco: {{usuario_actual['contacto_parentesco']}} </p>
+
+    <br> <br>
+    <a href="{{url_for('editar_ficha')}}">Editar ficha</a> 
+    <br> <br>
+    <a href="{{url_for('logout')}}">Cerrar sesion</a>
+    
+</body>
+</html>
