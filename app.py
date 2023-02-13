@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -64,7 +64,7 @@ def login():
                 global usuario_actual 
                 usuario_actual = paciente.__dict__
                 print(f"INICIO SESION EL USUARIO {usuario_actual}")
-                return render_template('ficha_paciente.html', usuario_actual=usuario_actual)
+                return redirect(url_for('ficha_paciente'))
             else:
                 return 'La contrasenha es incorrecta. Intente de nuevo' 
         else:
@@ -93,8 +93,8 @@ def register():
 
         # Modificamos la variable global
         usuario_actual = paciente.__dict__
-        print(f"SE REGISTRO EL USUARIO {usuario_actual}")
-        return render_template('ficha_paciente.html', usuario_actual=usuario_actual)
+        print(f"SE REGISTRO EL USUARIO {usuario_actual.nombre}")
+        return redirect(url_for('ficha_paciente'))
     return render_template('register.html', usuario_actual=usuario_actual)
 
 @app.route('/editar_ficha', methods=['GET', 'POST'])
@@ -135,7 +135,7 @@ def editar_ficha():
 
         # Actualizamos la variable usuario_actual
         usuario_actual = paciente.__dict__
-        return render_template('ficha_paciente.html', usuario_actual=usuario_actual)
+        return redirect(url_for('ficha_paciente'))
     return render_template('editar_ficha.html')
 
 @app.route('/logout')
@@ -153,4 +153,4 @@ def borrar(id):
     
 if __name__ == '__main__':
     db.create_all()
-    app.run(debug=True) 
+    app.run(debug=True, port=8080) 
